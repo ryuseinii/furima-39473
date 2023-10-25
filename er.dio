@@ -120,7 +120,7 @@
                 <mxCell id="79" value="←has_one :order&lt;br&gt;&lt;br&gt;→belongs_to :item" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="380" y="454" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="80" value="←belongs_to :orders" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                <mxCell id="80" value="←belongs_to :order" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="359" y="600" width="130" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="81" value="→has_one :payment" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
