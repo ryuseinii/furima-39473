@@ -19,13 +19,13 @@ has_many :orders
 |Column            |Type      |Options                       |
 |user              |references|null: false, foreign_key: true|
 |name              |string    |null: false                   |
-|description       |string    |null: false                   |
+|description       |text      |null: false                   |
 |category_id       |integer   |null: false                   |
 |status_id         |integer   |null: false                   |
 |shipping_charge_id|integer   |null: false                   |
 |shipping_days_id  |integer   |null: false                   |
 |prefecture_id     |integer   |null: false                   |
-|price             |string    |null: false                   |
+|price             |integer   |null: false                   |
 ### Association
 belongs_to :user
 has_one :order
