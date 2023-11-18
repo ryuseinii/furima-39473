@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     nickname {Faker::Name.initials(number: 2)}
-    email {Faker::Internet.free_email}
+    email {Faker::Internet.email}
     # ランダムで生成する際、英数字になるよう'1a'追加
     password {'1a' + Faker::Internet.unique.password(min_length: 6)}
     password_confirmation {password}
