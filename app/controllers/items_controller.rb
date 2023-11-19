@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
       redirect_to item_path(item_params)
     else
       # NGであれば、エラー内容とデータを保持したままeditファイルを読み込み、エラーメッセージを表示させる
-      render 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
