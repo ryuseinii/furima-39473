@@ -14,6 +14,7 @@
         <span>Sold Out!!</span>
       </div>
       <%# //商品が売れている場合は、sold outを表示する %>
+      
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -24,17 +25,16 @@
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分ける %>
-
+<%# 新規登録していない人でも詳細画面を見られるが以下のボタンは登録者のみ %>
   <% if user_signed_in? %> 
+    <%# 商品の編集・削除ができるのは、本人のみ %>
     <% if current_user.id == @item.user_id then %>
-      <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+      <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
+      <p class='or-text'>or</p>
+      <%= link_to '削除', '#', method: :delete, class:'item-destroy' %>
     <% else %>
-    <%# 商品が売れていない場合はこちらを表示する %>
-      <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-    <%# //商品が売れていない場合はこちらを表示する %>
+    <%# 商品の購入ができるのは、出品者以外のみ %>
+      <%= link_to '購入画面に進む', '#', class:"item-red-btn"%>
     <% end %>
   <% end %>
 
@@ -104,7 +104,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>    
 </div>
 
 <%= render "shared/footer" %>
