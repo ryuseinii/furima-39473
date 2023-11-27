@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :non_purchased_item, only: [:index, :create]
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_form = OrderForm.new
   end
 
@@ -11,9 +12,10 @@ class OrdersController < ApplicationController
     if @order_form.valid?
       pay_item
       @order_form.save
-      redirect_to root_path
+      return redirect_to root_path
     else
-      render :index
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -21,6 +23,15 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order_form).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,        # 商品の値段
+      card: order_params[:token], # カードトークン
+      currency: 'jpy'             # 通貨の種類（日本円）
+    )
   end
 
   def non_purchased_item
